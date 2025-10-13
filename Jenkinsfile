@@ -5,7 +5,6 @@ pipeline {
         stage('Clone Repo') {
             steps {
                 echo 'Cloning repository...'
-                // Jenkins clones your Git repo automatically, so we just print here
             }
         }
 
@@ -14,7 +13,7 @@ pipeline {
                 echo 'Setting up Python virtual environment...'
                 sh '''
                     python3 -m venv venv
-                    source venv/bin/activate
+                    . venv/bin/activate
                     pip install -r requirements.txt
                 '''
             }
@@ -24,7 +23,7 @@ pipeline {
             steps {
                 echo 'Running ETL script...'
                 sh '''
-                    source venv/bin/activate
+                    . venv/bin/activate
                     python etl.py
                 '''
             }
